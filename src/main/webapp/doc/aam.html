@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAST PARKING DOC</title>
+</head>
+<body>
+<p><b>Adnotacje</b></p>
+<p>@Secured - metody oznaczone tą adnotacją sprawdzane są pod względem uprawnień użytkownika.
+    Weryfikowana jest poprawność tokenu, jego ważność oraz role użytkownika. Istnieje możliwość
+    określenia użytkownicy z jakimi rolami mają dostęp do danej metody, np.:
+    @Secured({Role.Name.Admin}) oznacza, że daną metodę może wykonać tylko administrator.</p>
+   <p> @Limited - metody oznaczone tą adnotacją sprawdzane są pod względem ilosci wywołań. Sprawdzane
+       jest czy dany adres IP nie został już zablokowany, jeżeli nie zwiększany jest licznik prób dla danego adresu.
+       Jeżeli licznik przekroczy wartość 5, nakładana jest blokada na okres 60 min.</p>
+
+<p><b>Metody</b></p>
+<table border="1">
+    <tr>
+        <th>METHOD</th>
+        <th>URL</th>
+        <th>ALLOWED ROLES</th>
+        </th><th>HEADERS</th>
+        <th>DESCRIPTION</th>
+        <th>EXAMPLE JSON (POST & PUT)</th>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>api/auth</td>
+        <td>Guest</td>
+        <td>Content-Type: application/json; charset=utf-8</td>
+        <td>authorize user</td>
+        <td>{"login": "boss", "password": "adminpass"}</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>api/auth</td>
+        <td>All</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>remove authorization</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/auth</td>
+        <td>All</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>get authorization</td>
+        <td></td>
+    </tr>
+</table>
+<p></p>
+<table border="1">
+    <tr>
+        <th>METHOD</th>
+        <th>URL</th>
+        <th>ALLOWED ROLES</th>
+        </th><th>HEADERS</th>
+        <th>DESCRIPTION</th>
+        <th>EXAMPLE JSON (POST & PUT)</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/auth/logs</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>get all authorization logs</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/auth/logs/{login}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>get all authorization logs with given login</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>api/am/auth/logs/id/{id}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>delete authorization log with given ID number</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>api/am/auth/logs/login/{login}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>delete all authorization logs with given login</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/auth/ip_limiter</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>get all ipLimiters</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/ip_limiter/{ip}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>get ipLimiter with given IP address</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>api/am/auth/ip_limiter/ip/{ip}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>delete IpLimiter with given IP address</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>api/am/auth/ip_limiter/id/{id}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>delete IpLimiter with given ID</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/auth/ip_limiter/block/{ip}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>permanently block IP address</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>api/am/auth/ip_limiter/unblock/{ip}</td>
+        <td>Admin</td>
+        <td>Authorization: Bearer &lttoken&gt</td>
+        <td>unblock IP address</td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+</html>
